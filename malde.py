@@ -247,8 +247,6 @@ if __name__ == "__main__":
 		except:
 			pass
 
-
-
 	def getappid():
 		# fungsi untuk mengambil semua pid user_proses yang mengakses file 
 		# pid disimpan dalam var=pditmp : type=set(), type set secara otomatis mengabaikan dobel item (uniq)
@@ -269,7 +267,6 @@ if __name__ == "__main__":
 		except:
 			pass
 
-			
 	def marge_comparator_data():
 		# fungsi untuk -menggabungkan data, -filter data, -modifikasi data
 		# marge_comparator_data
