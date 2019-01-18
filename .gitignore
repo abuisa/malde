@@ -4,5 +4,4 @@ tess/
 *.pyc
 *.zip
 *.db
-*.txt
-
+piplist.pip
