@@ -516,13 +516,16 @@ Rata-RataMsWordMsExcelMsPower PointAdobe ReaderXnView ImageLocky Malware
 
       Laporan data pada tabel 4.8 diatas merupakan data rata-rata hasil pengujian sistem deteksi malware terhadap aktivitas applikasi dan malware locky ransomware dalam melakukan akses terhadap data user. Tabel 4.8 diatas merupakan rangkuman data berupa angka rata-rata dari beberapa tabel sebelumnya yang bertujuan untuk mempermudah melihat perbedaan dari masing-masing tabel yang dihasilkan melalui testing terhadap applikasi dan malware menggunakan sistem deteksi malware. Hasil rangkuman data rata-rata menunjukan perbedaan sangat tinggi, data rata-rata tertinggi untuk poin total events selain malware adalah data dari applikasi MsWord yaitu 46.33 dan terendah adalah data milik applikasi XnView Image yaitu 1.33, sedangkan data total file yang diakses tertinggi selain malware adalah milik applikasi MsWord yaitu 12 file dan yang terendah yaitu 1 file, dengan demikian data rata-rata dari beberapa applikasi tersebut pada point total events menunjukkan angka antara 1.33 sampai dengan 46.33 events per testing, sedangkan total file yang diakses menunjukkan data rata-rata antara 1 file sampai dengan 12 file yang diakses per testing. Sedangkan data rata-rata yang dihasilkan dari testing terhadap malware menunjukkan peningkatan jumlah angka menjadi beberapa kali lipat, jika melihat pada tabel 4.7 data hasil tiga kali testing malware menunjukkan data terendah untuk point total events adalah berjumlah 643 events sedangkan tertinggi adalah berjumlah 1769 events, adapun pada poin jumlah total file data terendah total file yang diakses adalah berjumlah 153 file dan tertingi adalah sebanyak 755 file yang diakses. 
       
-4.6 Analisis Hasil dan Kesimpulan 
+4.6 Hasil dan Kesimpulan 
 4.6.1 Kesimpulan Hasil Testing
 Tingginya berbedaan jumlah data events, jumlah file yang diakses, serta perbedaan data lainya yang dihasilkan dari pengujian antara applikasi malware dengan beberapa applikasi yang umum digunakan oleh pengguna komputer untuk membuka data mereka seperti file dokument, file pdf serta file gambar sebagaimana applikasi tersebut diatas, menunjukkan perilaku applikasi terhadap data berdasarkan hasil diatas dapat dijadikan sebagai cara untuk deteksi malware dengan menggunakan metode behavior based detection approach, tingginya perbedaan data antara malware dan applikasi tersebut dapat untuk dijadikan sebagai sebuah standar behavior yaitu, behavior yang normal dan behavior yang tidak normal, sehingga dengan menggunakan standar behavior tersebut ketika sebuah applikasi berhubungan dengan data user maka sistem apapun yang dibangun untuk deteksi malware menggunakan metode pendekatan behavior dapat mendeteksi perilaku yang tidak normal tersebut sebagai sebuah malware.
-4.6.2 Analisis Penerapan Metode Behavior 
-Penerapa metode deteksi malware berbasis behavior memiliki cakupan yang sangat luas dan pada penelitian ini adalah usaha untuk memahami dan menerapkan sisi kecil dari metode ini… 
+
+4.6.2 Hasil Penerapan Metode Behavior 
+Penggunaan metode behavior based detection untuk mendeteksi malware yang secara spesifik menjadikan data user sebagai target dan bukan sebagaimana malware pada umumnya yang menjadikan system sebagai targetnya merupakan yang ditekankan pada penelitian ini,  pada tahap penerapannya peneliain ini menggunakan malware yang  yang secara spesifik menjadikan data user sebagai target yaitu malware ransomware tipe locky dan, python untuk implementasi sistem deteksi malwarenya. 
+Penerapan penggunaan metode behavior based detection untuk deteksi malware pada penelitian ini menunjukkan keberhasilan dan hal ini sesuai dengan tujuan penelitian yaitu, penerpan metode ini untuk dapat mendeteksi walware berdasarkan perilaku sebuah aplikasi ketika melakukan akses terhadap data milik user. Keberhasilan  ini tentu dapat dilihat atau diukur berdasarkan beberap poin yaitu, berhasil menerapkan metode behavior untuk deteksi malware yang diimplementasikan menjadi sistem deteksi malware menggunakan pemrograman python, dan sistem deteksi yang dibangun dapat bekerja sangat baik dalam mendeteksi aktifitas malware berdasarkan perilaku aplikasi yang mengakses data user.
+
 4.6.3 Kesimpulan 
-Pengujian terhadap sistem deteksi malware yang telah dilakukan pada beberapa aplikasi dan malware diatas menunjukkan hasil yang sesuai dari beberapa kali melakukan pengujian, hasil tersebut dapat disimpulkan sebagai indikasi keberhasilan sistem deteksi malware untuk mendeteksi malware, beberapa poin yang menjadi indikasi keberhasilan adalah pertama, hasil yang sesuai yaitu sistem deteksi dapat membedakan sebuah aplikasi dengan malware berdasarkan perilaku aplikasi pada data, data hasil pada tabel-tabel diatas menunjukan poin yang dimaksud.
+Pengujian terhadap sistem deteksi malware yang telah dilakukan pada beberapa aplikasi dan malware diatas menunjukkan hasil yang sesuai dari beberapa kali melakukan pengujian, hasil tersebut dapat disimpulkan sebagai indikasi keberhasilan sistem deteksi malware untuk mendeteksi malware menggunakan metode behavior based detection, poin yang menjadi indikasi keberhasilan adalah, hasil yang sesuai yaitu berhasil menerapkan metode behavior based detection untuk deteksi malware dan system yang dibagun berdasarkan pada metode behavior yaitu sistem deteksi malware dapat membedakan sebuah aplikasi dengan malware berdasarkan perilaku aplikasi terhadap data user, dan data hasil yang ditunjukkan pada tabel-tabel diatas menunjukan poin keberhasil yang dimaksud.
 
 5 BAB 5
 Kesimpulan dan Saran 
@@ -578,7 +581,7 @@ Yusirwan, S., Prayudi, Y., & Riadi, I. (2015). Implementation of Malware Analysi
 
 
 
-46
+50
    
 
 
