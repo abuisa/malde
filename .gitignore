@@ -5,3 +5,4 @@ tess/
 *.zip
 *.db
 piplist.pip
+*.tar.gz
