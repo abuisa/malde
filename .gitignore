@@ -6,3 +6,7 @@ tess/
 *.db
 piplist.pip
 *.tar.gz
+build/
+dist/
+build_exe_test/
+*.spec
