@@ -1,10 +1,8 @@
 #------------------------------
 # DiEdit oleh : Abu_Isa 	---
 # Versi Pengembangan 06.01  ---
-# Perubahan nama dari : 
-# 	- api_hook_05_test.py
-#	- malde_test.py
-#--------------------------
+# Nama branch : malde01     ---
+#------------------------------
 
 # Copyright (c) 2009-2014, Mario Vilas
 # All rights reserved.
@@ -196,7 +194,7 @@ if __name__ == "__main__":
 	  4 : "REN_Frm",
 	  5 : "REN__To"
 	}
-	
+
 	def tcon():
 		global conn
 		con = testconn('192.168.56.1',6677)
