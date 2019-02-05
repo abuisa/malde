@@ -25,7 +25,7 @@ import time
 # data4 list untuk menampung sementara data process debug
 # data5 list untuk menampung hasil komparasi data3 dan data4 
 
-conn = False
+conn  = False
 data3 = []
 data4 = []
 data5 = []
@@ -182,6 +182,7 @@ def start_debug_05(): # Hasil OK.
 		pass
 	finally:
 		d1.stop()
+	
 		
 if __name__ == "__main__":
 #	ip1, pr1  = "127.0.0.1", 6677
