@@ -17,6 +17,8 @@ from datetime import datetime
 import binascii
 import signal
 from myvar import *
+import subprocess as sp
+
 
 #conn = False
 #fileEx = ['.exe','.txt','.doc','.docx','.ppt','.pptx','.xls','.xlsx','.jpg','.jpeg','.png','.pdf'] # The First One
@@ -619,8 +621,9 @@ def sort_deduplicate(l):
 	except:
 		pass
     
-def print_report(r1,r2,ee,allf,fe,fs):
+def print_report(r1,r2,allf,fe,fs):
 	try:
+#		tmp=sp.call('cls',shell=True) # bersihkan layar 
 		created,deleted,changed,renfom,rento =0,0,0,0,0
 		opfile,crtps = 0,0
 		allps = set()
@@ -648,8 +651,8 @@ def print_report(r1,r2,ee,allf,fe,fs):
 		print ' Laporan Aktifitas Mengakses Files Oleh Prosess : '
 		print '-'*55	
 		print ' Laporan untuk Waktu  :', waktu										
-		print ' Total Events         : %s [%s/%s/%s]' % (str(len(rall)),str(len(r1)),str(len(r2)),str(len(ee)))
-														# ee : From Param, 
+		print ' Total Events         : %s [%s/%s]' % (str(len(rall)),str(len(r1)),str(len(r2)))
+
 		print '    Open Events       : %s ' % str(opfile)
 		print '    Created Events    : %s ' % str(created)
 		print '    Changed Events    : %s ' % str(changed)	
