@@ -1,5 +1,4 @@
 from mymodule import *
-from api_hook_05_test import *
 #import threading
 from myvar import *
 #from listen_6677 import *
@@ -143,6 +142,7 @@ while True:
 		if pilih == "f": #====f=============	
 			if get_ps_from_wn('Program Manager'):
 				print 'Berhasil'
+				print 'Hasil : ', get_ps_from_wn('Program Manager')[1]
 		if pilih == "e": #====e=============
 			fn = raw_input('Get File Ver [exe_file] : ')
 			print fn
@@ -184,9 +184,23 @@ while True:
 			for pid in getuserps_id():
 				print ' =>> %s ' % pid
 		if pilih == "6": #====6=============
+			lss=[]
 			for pid in getuserps_id():
-#				print pid
-				getfilesopenbyps(int(pid))
+				e_pid = get_ps_from_wn('Program Manager')[1]
+				if str(e_pid) == str(pid):
+					continue
+#					print ' E_pid      : %s' % pid
+#					print ' E_getuname : %s' % getuname(int(pid))
+#					print ' E_getexe   : %s' % getexe(int(pid))
+				else:
+					print ' pid      : %s' % pid
+					print ' getuname : %s' % getuname(int(pid))
+					print ' getexe   : %s' % getexe(int(pid))
+				getfilesopenbyps(int(pid),lss)
+				print '*'*55
+#			for l in lss:
+#				print " File : ", l
+
 		if pilih == "66": #====6=============
 #			mal_module variable dari mydb.py
 			while 1:
