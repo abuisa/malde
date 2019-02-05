@@ -176,8 +176,9 @@ def start_debug_05(): # Hasil OK.
 			except:
 				pass
 		d1.loop()
-	except:
-		pass
+	except Exception as E:
+		print ' start_debug_05 Error : ',str(E)
+#		pass
 	finally:
 		d1.stop()
 	
@@ -197,7 +198,6 @@ if __name__ == "__main__":
 	
 	print ' Start Monitoring... '
 
-
 	def waktu_monitoring(): 
 		global gohit
 		try:
@@ -211,7 +211,7 @@ if __name__ == "__main__":
 #					t1 = datetime.now()
 				# versi II 
 				if gohit: 
-					if (datetime.now()-t1).seconds > 5: # periksa dan show data 5 detik setelah process baru
+					if (datetime.now()-t1).seconds > 2: # periksa dan show data 5 detik setelah process baru
 						getappid()
 						marge_comparator_data() 
 						t1 = datetime.now()
@@ -220,21 +220,6 @@ if __name__ == "__main__":
 			pass
 	#	except Exception as E:
 	#		print 'Error : ', str(E)
-
-#	def fdata(dataz):
-#		# untuk mencari kesamaan file dalam data3 dan data4
-#		# data3 dan data4 yang sama digabung dan disusun berdasarkan event  
-#		global data3, data4 # data3 :event - len(2), data4 :wdir - len(2)
-#		try:
-#			if len(data3) > 0 and len(data4) > 0:
-#				for d4 in data4:
-#					for d3 in data3:
-##						if d4[1] in d3[3]:
-#						if d4[1].lower() in d3[3].lower():
-#							dataz.append([d3[0],d3[1],d4[0],d3[3]]) # dataz di isi data4 kombinasi data3
-#			return dataz
-#		except:
-#			pass
 
 	def getappid():
 		# fungsi untuk mengambil semua pid user_proses yang mengakses file 
@@ -263,27 +248,14 @@ if __name__ == "__main__":
 		allf = set()
 		fexi,fsig = 0,0
 		try:
-#--------------------------------------------------------------
-#			try:
-#				dataz = []	
-#				dataz = fdata(dataz)
-#				dataz = sort_deduplicate(dataz) 
-##				for dz in dataz:
-##					dz5 = " [%s:%s] %s %s " % (str(dz[0]),dz[1],dz[2],dz[3])
-##					print ' => ', dz5
-#			except: 
-#				pass
+
 #--------------------------------------------------------------	
 			data5 = data3 + data4		
 			if len(data5)>0:
 				dx = len(data5)	
 				data5 = sort_deduplicate(data5) 
 #--------------------------------------------------------------
-#				print '--- Sort|Uniq Data5 ' + str('-'*35)
-				#-----------------------------------
-#				for pidt in pidtmp:
-#					print ' PIDx : %s' % pidt
-				#-----------------------------------
+
 				print '='*55				
 				for d5 in data5:
 					if len(d5) > 4:	f = d5[-2]
@@ -320,12 +292,10 @@ if __name__ == "__main__":
 				data3 =[] # From Event
 				data4 =[] # From Wdir		
 				data5 =[] # From Equal
-#				dataz =[]
 				mylist=[]
 				allf.clear()
 				fexi,fsig = 0,0
 				pidtmp.clear()
-#				print ' AF-TOTAL MYLIST : ',str(len(mylist))
 		except:
 			pass
 #		except Exception as E:
