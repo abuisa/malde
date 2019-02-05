@@ -23,7 +23,7 @@ import time
 # data4 list untuk menampung sementara data process debug
 # data5 list untuk menampung hasil komparasi data3 dan data4 
 
-conn  = False
+
 data3 = []
 data4 = []
 data5 = []
@@ -183,10 +183,9 @@ def start_debug_05(): # Hasil OK.
 	
 		
 if __name__ == "__main__":
-#	ip1, pr1  = "127.0.0.1", 6677
-	ip1, pr1  = "192.168.56.1", 6677
+	reportke  = 0 # untuk menghitung jumlah report 
 	driveC    = "C:\\"
-	missfile = 0
+	missfile  = 0
 	act = {
 	  1 : "CREATED",
 	  2 : "DELETED",
@@ -195,19 +194,10 @@ if __name__ == "__main__":
 	  5 : "REN__To"
 	}
 
-	def tcon():
-		global conn
-		con = testconn('192.168.56.1',6677)
-		print ' Connection : ',con
-		if con == True:	conn = True
-		if con == None:	conn = False
 	
 	print ' Start Monitoring... '
-	tcon()
-	sendata(conn,ip1,pr1,'Connection From Debug_agent_05')
-	# to do (experiment) : if new process detect then :
-	
-	
+
+
 	def waktu_monitoring(): 
 		global gohit
 		try:
@@ -231,20 +221,20 @@ if __name__ == "__main__":
 	#	except Exception as E:
 	#		print 'Error : ', str(E)
 
-	def fdata(dataz):
-		# untuk mencari kesamaan file dalam data3 dan data4
-		# data3 dan data4 yang sama digabung dan disusun berdasarkan event  
-		global data3, data4 # data3 :event - len(2), data4 :wdir - len(2)
-		try:
-			if len(data3) > 0 and len(data4) > 0:
-				for d4 in data4:
-					for d3 in data3:
-#						if d4[1] in d3[3]:
-						if d4[1].lower() in d3[3].lower():
-							dataz.append([d3[0],d3[1],d4[0],d3[3]]) # dataz di isi data4 kombinasi data3
-			return dataz
-		except:
-			pass
+#	def fdata(dataz):
+#		# untuk mencari kesamaan file dalam data3 dan data4
+#		# data3 dan data4 yang sama digabung dan disusun berdasarkan event  
+#		global data3, data4 # data3 :event - len(2), data4 :wdir - len(2)
+#		try:
+#			if len(data3) > 0 and len(data4) > 0:
+#				for d4 in data4:
+#					for d3 in data3:
+##						if d4[1] in d3[3]:
+#						if d4[1].lower() in d3[3].lower():
+#							dataz.append([d3[0],d3[1],d4[0],d3[3]]) # dataz di isi data4 kombinasi data3
+#			return dataz
+#		except:
+#			pass
 
 	def getappid():
 		# fungsi untuk mengambil semua pid user_proses yang mengakses file 
@@ -274,16 +264,15 @@ if __name__ == "__main__":
 		fexi,fsig = 0,0
 		try:
 #--------------------------------------------------------------
-			try:
-				dataz = []	
-				dataz = fdata(dataz)
-				dataz = sort_deduplicate(dataz) 
-#				for dz in dataz:
-#					dz5 = " [%s:%s] %s %s " % (str(dz[0]),dz[1],dz[2],dz[3])
-#					sendata(conn,ip1,pr1,dz5)
-#					print ' => ', dz5
-			except: 
-				pass
+#			try:
+#				dataz = []	
+#				dataz = fdata(dataz)
+#				dataz = sort_deduplicate(dataz) 
+##				for dz in dataz:
+##					dz5 = " [%s:%s] %s %s " % (str(dz[0]),dz[1],dz[2],dz[3])
+##					print ' => ', dz5
+#			except: 
+#				pass
 #--------------------------------------------------------------	
 			data5 = data3 + data4		
 			if len(data5)>0:
@@ -313,10 +302,9 @@ if __name__ == "__main__":
 #					#------------------------------------------
 					if len(d5) >  4:d55 = " [ %s : %s ] %s %s %s " % (d5[0],d5[1],d5[2],d5[3],d5[4])
 					if len(d5) == 4:d55 = " [ %s : %s ] %s %s "    % (d5[0],d5[1],d5[2],d5[3])
-					print d55	
-					sendata(conn,ip1,pr1,d55)
+#					print d55	
 #--------------------------------------------------------------
-				print '-'*55
+#				print '-'*55
 				i = 0
 				for sl in allf:								
 					cfile = isfile(sl)
@@ -324,21 +312,15 @@ if __name__ == "__main__":
 					if cfile == 'EXIST':fexi = fexi + 1	
 					if csig  == 'unknown':fsig = fsig + 1
 					i = i+1	
-					print ' File %d \t : [ %s : %s ] %s' % (i,cfile,csig,sl)
+#					print ' File %d \t : [ %s : %s ] %s' % (i,cfile,csig,sl)
 				ufsig = len(allf) - fsig
 #--------------------------------------------------------------	
-#				if len(mylist)>0:
-#					print '+'*55			
-#					for lv in mylist:
-#						print ' >> : ',lv
-#					print ' TOTAL MYLIST : ',str(len(mylist))
-#					print '+'*55
-#--------------------------------------------------------------
-				print_report(data3,data4,dataz,allf,fexi,ufsig)
+
+				print_report(data3,data4,allf,fexi,ufsig)
 				data3 =[] # From Event
 				data4 =[] # From Wdir		
 				data5 =[] # From Equal
-				dataz =[]
+#				dataz =[]
 				mylist=[]
 				allf.clear()
 				fexi,fsig = 0,0
