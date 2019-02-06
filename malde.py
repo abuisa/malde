@@ -101,7 +101,7 @@ class MyEventHandler( EventHandler ):
             pspid  = getpidexe(os.path.basename(string))
             if retval:
                 data3.append([str(pid), exe, gtag, string, str(pspid)])
-                start_debug_05() #OK, masih ada error
+                start_debug() #OK, masih ada error
                 getfilesopenbyps(int(pspid),mylist)
 #        except Exception as E:
 #            print 'Error PS => ', str(E) 
@@ -167,17 +167,31 @@ class MyEventHandler( EventHandler ):
 
 d1 = Debug(MyEventHandler())
 
-def start_debug_05(): # Hasil OK.
+def start_debug(): # Hasil OK.
 	try:
 		d1.stop()
 		for pid in getuserps_id():
 			try:
+				# Experiment untuk tidak memeriksa proces explorer
+				# e_pid menampung pid dari explorer.exe, 
+				# explorer.exe tidak akan di attach oleh debuger.
+				# Experiment GAGAL dan diNonAktifkan lagi
+#				e_pid = get_ps_from_wn('Program Manager')[1]
+#				if str(e_pid) == str(pid):
+#					continue
+#				else:
 				d1.attach(int(pid))
-			except:
+			except: # Exception as E:
+#				print ' [%s] Attach Error, Pass.....' % getexe(pid)
 				pass
+#				d1.attach(int(pid))
+#				print ' start_debug Error : ',str(E)
+#				pass
 		d1.loop()
-	except Exception as E:
-		print ' start_debug_05 Error : ',str(E)
+	except: # Exception as E:
+#		print ' Loop Error, Pass.....'
+		pass
+#		print ' start_debug Error : ',str(E)
 #		pass
 	finally:
 		d1.stop()
@@ -235,7 +249,6 @@ if __name__ == "__main__":
 				for ppid in pidtmp:
 					getfilesopenbyps(int(ppid),mylist)						
 #					print ' PID-TMP : ', ppid
-
 #		except Exception as E:
 #			print ' Error getappid : ', str(E)
 		except:
@@ -313,7 +326,7 @@ if __name__ == "__main__":
 			except:
 				pass 
 
-	th1 = threading.Thread(target=start_debug_05)			
+	th1 = threading.Thread(target=start_debug)			
 	th1.start()
 #	
 	th2 = threading.Thread(target=wdir)
