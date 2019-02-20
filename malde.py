@@ -172,27 +172,12 @@ def start_debug(): # Hasil OK.
 		d1.stop()
 		for pid in getuserps_id():
 			try:
-				# Experiment untuk tidak memeriksa proces explorer
-				# e_pid menampung pid dari explorer.exe, 
-				# explorer.exe tidak akan di attach oleh debuger.
-				# Experiment GAGAL dan diNonAktifkan lagi
-#				e_pid = get_ps_from_wn('Program Manager')[1]
-#				if str(e_pid) == str(pid):
-#					continue
-#				else:
 				d1.attach(int(pid))
 			except: # Exception as E:
-#				print ' [%s] Attach Error, Pass.....' % getexe(pid)
 				pass
-#				d1.attach(int(pid))
-#				print ' start_debug Error : ',str(E)
-#				pass
 		d1.loop()
 	except: # Exception as E:
-#		print ' Loop Error, Pass.....'
 		pass
-#		print ' start_debug Error : ',str(E)
-#		pass
 	finally:
 		d1.stop()
 	
