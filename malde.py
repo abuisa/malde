@@ -1,7 +1,7 @@
 #------------------------------
-# DiEdit oleh : Abu_Isa 	---
-# Versi Pengembangan 06.01  ---
-# Nama branch : malde01     ---
+# DiEdit oleh : Abu_Isa		---
+# Versi Pengembangan 06.01	---
+# Nama branch : malde01		---
 #------------------------------
 
 # Copyright (c) 2009-2014, Mario Vilas
@@ -30,7 +30,6 @@ data5 = []
 pidtmp = set()
 mylist = []
 sdat = False
-gohit=False
 pid, exe, stat, string, gtag = '','','','',''
 
 class MyEventHandler( EventHandler ):
@@ -77,21 +76,19 @@ class MyEventHandler( EventHandler ):
         
         
     def __print_createps_ansi( self, event, tag, pointer ): # untuk win7 fungsi ini tidak bekeraja
-        global pid, exe, string, gtag, gohit # set data to global variable supaya bisa diakses dari luar
+        global pid, exe, string, gtag  # set data to global variable supaya bisa diakses dari luar
         string = event.get_process().peek_string( pointer )
         pid    = event.get_pid()
         exe    = os.path.basename(event.get_process().get_filename())	
         gtag   = tag
-        gohit  = True
 
         
     def __print_createps_unicode( self, event, tag, pointer ): # untuk win7 fungsi ini yang bekeraja
-        global pid, exe, string, gtag, gohit # set data to global variable supaya bisa diakses dari luar
+        global pid, exe, string, gtag  # set data to global variable supaya bisa diakses dari luar
         string = event.get_process().peek_string( pointer, fUnicode = True )
         pid    = event.get_pid()
         exe    = os.path.basename(event.get_process().get_filename())
         gtag   = tag
-        gohit  = True
 
 
 
@@ -198,23 +195,20 @@ if __name__ == "__main__":
 	print ' Start Monitoring... '
 
 	def waktu_monitoring(): 
-		global gohit
 		try:
 			t1 = datetime.now()  
 			while 1:
 				time.sleep(0.02)
 				# versi I : hasil OK
-#				if (datetime.now()-t1).seconds > 5: # periksa dan show data setiap 5 detik
+				if (datetime.now()-t1).seconds > 5: # periksa dan show data setiap 5 detik
+					getappid()
+					marge_comparator_data() 
+					t1 = datetime.now()
+				# versi II 
+#				if (datetime.now()-t1).seconds > 2: # periksa dan show data 5 detik setelah process baru
 #					getappid()
 #					marge_comparator_data() 
 #					t1 = datetime.now()
-				# versi II 
-				if gohit: 
-					if (datetime.now()-t1).seconds > 2: # periksa dan show data 5 detik setelah process baru
-						getappid()
-						marge_comparator_data() 
-						t1 = datetime.now()
-						gohit = False
 		except:
 			pass
 	#	except Exception as E:
