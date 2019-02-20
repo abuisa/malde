@@ -183,7 +183,7 @@ def start_debug(): # Hasil OK.
 	
 		
 if __name__ == "__main__":
-	reportke  = 0 # untuk menghitung jumlah report 
+	rpt  = 0 # untuk menghitung jumlah report 
 	driveC    = "C:\\"
 	missfile  = 0
 	act = {
@@ -242,7 +242,7 @@ if __name__ == "__main__":
 	def marge_comparator_data():
 		# fungsi untuk -menggabungkan data, -filter data, -modifikasi data
 		# marge_comparator_data
-		global data3, data4, mylist, pidtmp
+		global data3, data4, mylist, pidtmp,rpt
 		allf = set()
 		fexi,fsig = 0,0
 		try:
@@ -253,28 +253,13 @@ if __name__ == "__main__":
 				dx = len(data5)	
 				data5 = sort_deduplicate(data5) 
 #--------------------------------------------------------------
-
+				rpt = rpt+1
 				print '='*55				
 				for d5 in data5:
 					if len(d5) > 4:	f = d5[-2]
 					else:f = os.path.join(driveC,d5[-1])
 					allf.add(f)
-#					#------------------------------------------					
-					if len(d5) == 2:
-						psdg = getlistitem(mylist,d5[1])
-#						if psdg != " N/A ":	pidg = getpidexe(psdg)
-#						else:pidg = " N/A "
-						d5.insert(0," N/A ")
-						d5.insert(1,psdg)						
-						d53 = os.path.join(driveC,d5[3])
-						d5.remove(d5[3])
-						d5.insert(3,d53)
-#					#------------------------------------------
-					if len(d5) >  4:d55 = " [ %s : %s ] %s %s %s " % (d5[0],d5[1],d5[2],d5[3],d5[4])
-					if len(d5) == 4:d55 = " [ %s : %s ] %s %s "    % (d5[0],d5[1],d5[2],d5[3])
-#					print d55	
 #--------------------------------------------------------------
-#				print '-'*55
 				i = 0
 				for sl in allf:								
 					cfile = isfile(sl)
@@ -284,9 +269,8 @@ if __name__ == "__main__":
 					i = i+1	
 #					print ' File %d \t : [ %s : %s ] %s' % (i,cfile,csig,sl)
 				ufsig = len(allf) - fsig
-#--------------------------------------------------------------	
-
-				print_report(data3,data4,allf,fexi,ufsig)
+#--------------------------------------------------------------
+				print_report(rpt,data3,data4,allf,fexi,ufsig)
 				data3 =[] # From Event
 				data4 =[] # From Wdir		
 				data5 =[] # From Equal
