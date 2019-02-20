@@ -661,10 +661,10 @@ def print_report(r1,r2,allf,fe,fs):
 		print ' Total Files          : %s ' % str(len(allf))   
 		print '    Exist Files       : %s Exist / %s Missing ' % (str(fe), str(len(allf) - fe))	# From Param
 		print '    Signature Files   : %s Known / %s Unknown ' % (str(fs),str(len(allf)-fs))	# From Param 
-		print ' Process              : %s ' % (str(len(allps)) + ' ' + str(list(allps)))
+		print ' Process              : %s ' % str(len(allps)) 
 		print '    Process Create    : %s ' % str(crtps)
-		print ' Hasil                :  ' #%
-		print '    Proses dicurigai  :  ' #% 
+#		print ' Hasil                :  ' #%
+#		print '    Proses dicurigai  :  ' #% 
 		print '*'*55	
 	except:
 		pass
