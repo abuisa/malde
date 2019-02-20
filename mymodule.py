@@ -621,7 +621,7 @@ def sort_deduplicate(l):
 	except:
 		pass
     
-def print_report(r1,r2,allf,fe,fs):
+def print_report(rpt,r1,r2,allf,fe,fs):
 	try:
 #		tmp=sp.call('cls',shell=True) # bersihkan layar 
 		created,deleted,changed,renfom,rento =0,0,0,0,0
@@ -650,6 +650,7 @@ def print_report(r1,r2,allf,fe,fs):
 		print '*'*55
 		print ' Laporan Aktifitas Mengakses Files Oleh Prosess : '
 		print '-'*55	
+		print ' Laporan Normor       :', str(rpt)
 		print ' Laporan untuk Waktu  :', waktu										
 		print ' Total Events         : %s [%s/%s]' % (str(len(rall)),str(len(r1)),str(len(r2)))
 
