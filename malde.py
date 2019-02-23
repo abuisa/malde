@@ -208,16 +208,11 @@ if __name__ == "__main__":
 			t1 = datetime.now()  
 			while 1:
 				time.sleep(0.02)
-				# versi I : hasil OK
 				if (datetime.now()-t1).seconds > 5: # periksa dan show data setiap 5 detik
 					getappid()
 					marge_comparator_data() 
 					t1 = datetime.now()
-				# versi II 
-#				if (datetime.now()-t1).seconds > 2: # periksa dan show data 5 detik setelah process baru
-#					getappid()
-#					marge_comparator_data() 
-#					t1 = datetime.now()
+
 		except:
 			pass
 	#	except Exception as E:
@@ -272,6 +267,9 @@ if __name__ == "__main__":
 					i = i+1	
 #					print ' File %d \t : [ %s : %s ] %s' % (i,cfile,csig,sl)
 				ufsig = len(allf) - fsig
+#--------------------------------------------------------------
+#				TEST PRINT DATA 
+				print_event(data5)
 #--------------------------------------------------------------
 				print_report(rpt,data3,data4,allf,fexi,ufsig)
 				data3 =[] # From Event

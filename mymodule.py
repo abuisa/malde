@@ -20,10 +20,6 @@ from myvar import *
 import subprocess as sp
 
 
-#conn = False
-#fileEx = ['.exe','.txt','.doc','.docx','.ppt','.pptx','.xls','.xlsx','.jpg','.jpeg','.png','.pdf'] # The First One
-#fileEx = ['.txt','.doc','.docx','.ppt','.pptx','.xls','.xlsx','.jpg','.jpeg','.png','.pdf'] # the Experiment
-
 def wtofile(fl,s):
 	try:
 		fl = 'LOG/'+fl
@@ -437,18 +433,7 @@ def get_modul_info(pid=None):
 	except Exception as E:
 		print ' Error : ', str(E)
 
-#def diffpercen(filtr,lname,list1,list2):
-#	try:
-#		list1,list2 = set(list1),set(list2)	
-#		diffl = list(set(list1).intersection(list2))
-#		lenlist1, lendiffl = len(list1), len(diffl)
-#		if persen(lendiffl,lenlist1) >= int(filtr):
-#			if lenlist1 == lendiffl:
-#				print ' Persen:%s \t:%s ' % (str(persen(lendiffl,lenlist1)),lname) 
-#			else:
-#				print ' Persen:%s \t:%s ' % (str(persen(lendiffl,lenlist1)),lname) 
-#	except Exception as E:
-#		print ' Error : ',str(E)
+
 def diffpercen(filtr,list1,list2):
 	try:
 		list1,list2 = set(list1),set(list2)	
@@ -664,33 +649,37 @@ def print_report(rpt,r1,r2,allf,fe,fs):
 		print '    Signature Files   : %s Known / %s Unknown ' % (str(fs),str(len(allf)-fs))	# From Param 
 		print ' Process              : %s ' % str(len(allps)) 
 		print '    Process Create    : %s ' % str(crtps)
-#		print ' Hasil                :  ' #%
+		print ' ' + '-'*55
+		print ' Hasil/Status         : %s' % ceksmax(rall,opfile,created,changed,deleted)
 #		print '    Proses dicurigai  :  ' #% 
 		print '*'*55	
 	except:
 		pass
 
-def getfilesopenbyps_OLD(pid,ss):
-#		time.sleep(0.1)
-		lps = set()
-		ps = psutil.Process(pid)
-		try:
-			psn = ps.name		
-			for psc in ps.cmdline:
-				if psc != '/n':
-					lps.add((pid,psn,psc))
-			for psg in ps.get_open_files():
-				lps.add((pid,psn,psg[0]))
-#			return lps
-			if len(lps)>0:
-				for l in lps:
-					if ss in l:
-						print ' >> [ %s : %s ]  %s' % (l[0],l[1],l[2])
-#					for fEx in fileEx: 
-#						if fEx in l[2]:
-#							print ' >> [ %s : %s ]  %s' % (l[0],l[1],l[2])
-		except Exception as E:
-			print ' Error : ',str(E)
+def ceksmax(rall,op,cr,ch,de):
+		# buat variable "smax" sebagai standar maximum event per report
+		# tetapkan smax= 100 
+		# jika "rall" > "smax" maka tampilkan status = "Mencurigakan Malware"
+		# Tampilkan Nama App jika diperlukan
+		smax = 100	
+		smsg = ""
+		if (len(rall) >= smax or op >= smax or cr >= smax or ch >= smax or de >= smax): 
+			smsg = "ABNORMAL Behavior"
+		else:
+			smsg = "Normal Behavior"		
+		return smsg
+
+def print_event(data_list):
+	for dl in data_list:
+		if len(dl)   == 2:
+			sdl = " %s : %s" % (dl[0],dl[1])
+		elif len(dl) == 3:
+			sdl = " %s : %s : %s" % (dl[0],dl[1],dl[2])
+		elif len(dl) == 4:
+			sdl = " %s : %s : %s : %s" % (dl[0],dl[1],dl[2],dl[3])
+		elif len(dl) == 5:
+			sdl = " %s : %s : %s : %s : %s" % (dl[0],dl[1],dl[2],dl[3],dl[4])
+		print "=>" + sdl					
 
 
 def getfilesopenbyps(pid,mylist):
