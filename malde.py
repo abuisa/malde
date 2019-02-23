@@ -1,6 +1,6 @@
 #------------------------------
 # DiEdit oleh : Abu_Isa		---
-# Versi Pengembangan 06.01	---
+# Versi Stabil 06.02		---
 # Nama branch : malde01		---
 #------------------------------
 
