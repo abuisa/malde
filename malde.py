@@ -127,28 +127,34 @@ class MyEventHandler( EventHandler ):
 
 	
     def __print_opening_ansi( self, event, tag, pointer ):
-        global sdat, pid, exe, string, gtag         
-        if os.path.isfile(event.get_process().peek_string(pointer)) == True:
-            for dfilter in data_filter: 
-                if dfilter in event.get_process().peek_string(pointer, fUnicode = True):
-                    string = event.get_process().peek_string(pointer)
-                    sdat, gtag  = True, tag
-                    pid    = event.get_pid()
-                    exe    = os.path.basename(event.get_process().get_filename())	
-        else:
-            sdat = False   
+        global sdat, pid, exe, string, gtag  
+        try:       
+		    if os.path.isfile(event.get_process().peek_string(pointer)) == True:
+		        for dfilter in data_filter: 
+		            if dfilter in event.get_process().peek_string(pointer, fUnicode = True):
+		                string = event.get_process().peek_string(pointer)
+		                sdat, gtag  = True, tag
+		                pid    = event.get_pid()
+		                exe    = os.path.basename(event.get_process().get_filename())	
+		    else:
+		        sdat = False   
+        except:
+            pass		    
 
     def __print_opening_unicode( self, event, tag, pointer ):
-        global sdat, pid, exe, string, gtag 
-        if os.path.isfile(event.get_process().peek_string(pointer, fUnicode = True)) == True: 
-            for dfilter in data_filter: 
-                if dfilter in event.get_process().peek_string(pointer, fUnicode = True):
-                    string = event.get_process().peek_string(pointer, fUnicode = True)   
-                    sdat, gtag  = True, tag             
-                    pid    = event.get_pid()
-                    exe    = os.path.basename(event.get_process().get_filename())
-        else:
-            sdat = False
+        global sdat, pid, exe, string, gtag
+        try: 
+		    if os.path.isfile(event.get_process().peek_string(pointer, fUnicode = True)) == True: 
+		        for dfilter in data_filter: 
+		            if dfilter in event.get_process().peek_string(pointer, fUnicode = True):
+		                string = event.get_process().peek_string(pointer, fUnicode = True)   
+		                sdat, gtag  = True, tag             
+		                pid    = event.get_pid()
+		                exe    = os.path.basename(event.get_process().get_filename())
+		    else:
+		        sdat = False
+        except:
+            pass
 
     def __print_success( self, event, retval ):
         global sdat, pid, exe, string, gtag, data3
@@ -158,12 +164,15 @@ class MyEventHandler( EventHandler ):
 		            data3.append([str(pid), exe, gtag, string]) 	
 		    else:
 		        data3.append([str(pid), exe, gtag, string])
-        except Exception as E:
-            print 'Error => ', str(E)
-#            pass
+        except : # Exception as E:
+#            print 'Error => ', str(E)
+            pass
 
-d1 = Debug(MyEventHandler())
-
+try:	
+	d1 = Debug(MyEventHandler())
+except Exception as E:
+	print " Error Debug : " + str(E)
+	
 def start_debug(): # Hasil OK.
 	try:
 		d1.stop()
@@ -248,7 +257,7 @@ if __name__ == "__main__":
 				data5 = sort_deduplicate(data5) 
 #--------------------------------------------------------------
 				rpt = rpt+1
-				print '='*55				
+				print '\n' + '='*55 + '\n'				
 				for d5 in data5:
 					if len(d5) > 4:	f = d5[-2]
 					else:f = os.path.join(driveC,d5[-1])
@@ -289,15 +298,17 @@ if __name__ == "__main__":
 			except:
 				pass 
 
-	th1 = threading.Thread(target=start_debug)			
-	th1.start()
+	try:
+		th1 = threading.Thread(target=start_debug)			
+		th1.start()
 #	
-	th2 = threading.Thread(target=wdir)
-	th2.start()	
+		th2 = threading.Thread(target=wdir)
+		th2.start()	
 #	
-	th4 = threading.Thread(target=waktu_monitoring)
-	th4.start()
-	
+		th4 = threading.Thread(target=waktu_monitoring)
+		th4.start()
+	except:
+		pass
 
 #===KET : ========================
 #	data3  = list1 : list get from debug event 
