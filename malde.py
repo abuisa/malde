@@ -296,7 +296,8 @@ if __name__ == "__main__":
 			except:
 				pass 
 
-	try:
+	try: 	# sebenarnya ini tidak penting2 amat...
+			# hanya karena bingung error terus... terpaksa use try:.. yg penting naik ujian..:)
 		th1 = threading.Thread(target=start_debug)			
 		th1.start()
 #	
@@ -305,7 +306,7 @@ if __name__ == "__main__":
 #	
 		th4 = threading.Thread(target=waktu_monitoring)
 		th4.start()
-	except:
+	except: 
 		pass
 
 #===KET : ========================

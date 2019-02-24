@@ -650,20 +650,21 @@ def print_report(rpt,r1,r2,allf,fe,fs):
 		print ' Process              : %s ' % str(len(allps)) 
 		print '    Process Create    : %s ' % str(crtps)
 		print ' ' + '-'*55
-		print ' Hasil/Status         : %s' % ceksmax(rall,opfile,created,changed,deleted)
+		print ' Hasil/Status         : %s' % ceksmax(rall,changed,renall,len(allf),len(allf)-fs)
 #		print '    Proses dicurigai  :  ' #% 
 		print '*'*55	
 	except:
 		pass
 
-def ceksmax(rall,op,cr,ch,de):
+def ceksmax(rall,ch,rn,tf,fg):
 		# buat variable "smax" sebagai standar maximum event per report
 		# tetapkan smax= 100 
 		# jika "rall" > "smax" maka tampilkan status = "Mencurigakan Malware"
 		# Tampilkan Nama App jika diperlukan
 		smax = 100	
 		smsg = ""
-		if (len(rall) >= smax or op >= smax or cr >= smax or ch >= smax or de >= smax): 
+		#if (len(rall) >= smax or op >= smax or cr >= smax or ch >= smax or de >= smax):
+		if (len(rall) >= smax and ch >= smax and rn >= smax and tf >= smax and fg >= smax ): 
 			smsg = "ABNORMAL Behavior"
 		else:
 			smsg = "Normal Behavior"		
