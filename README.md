@@ -1,6 +1,6 @@
 # malde
-Project Penelitian Sebuah Tool Malware Detection Based on Application Behavior.
-Menggunakan python untuk mengimplementasikan metode Behavior Based Detection untuk deteksi malware, OS yang digunakan untuk menjalankan project ini adalah sistem operasi windows 7
+Project ini merupakan tool yang dibangun untuk project Penelitian  Malware Detection Based on Application Behavior.
+Metode deteksi malware yang digunakan adalah Behavior Based Detection, sedangkan implementasi menggunakan python, OS yang digunakan untuk menjalankan project ini adalah sistem operasi windows 7
 
 # Python version : 
 Project ini menggunakan python versi : python 2.7.15
