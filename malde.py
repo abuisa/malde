@@ -269,7 +269,8 @@ if __name__ == "__main__":
 				ufsig = len(allf) - fsig
 #--------------------------------------------------------------
 #				TEST PRINT DATA 
-				print_event(data5)
+#				Hasil OK, Sementera Dinonaktifkan
+#				print_event(data5) 
 #--------------------------------------------------------------
 				print_report(rpt,data3,data4,allf,fexi,ufsig)
 				data3 =[] # From Event
@@ -297,7 +298,7 @@ if __name__ == "__main__":
 				pass 
 
 	try: 	# sebenarnya ini tidak penting2 amat...
-			# hanya karena bingung error terus... terpaksa use try:.. yg penting naik ujian..:)
+			# hanya karena bingung error terus... terpaksa use try:.. 
 		th1 = threading.Thread(target=start_debug)			
 		th1.start()
 #	

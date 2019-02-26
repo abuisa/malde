@@ -18,7 +18,7 @@ import binascii
 import signal
 from myvar import *
 import subprocess as sp
-
+from collections import Counter
 
 def wtofile(fl,s):
 	try:
@@ -651,7 +651,9 @@ def print_report(rpt,r1,r2,allf,fe,fs):
 		print '    Process Create    : %s ' % str(crtps)
 		print ' ' + '-'*55
 		print ' Hasil/Status         : %s' % ceksmax(rall,changed,renall,len(allf),len(allf)-fs)
-#		print '    Proses dicurigai  :  ' #% 
+#--------------------------------------------------------------
+#		TEST PRINT COUNT EXTENSION DATA
+#		count_exten(rall)
 		print '*'*55	
 	except:
 		pass
@@ -659,9 +661,15 @@ def print_report(rpt,r1,r2,allf,fe,fs):
 def ceksmax(rall,ch,rn,tf,fg):
 		# buat variable "smax" sebagai standar maximum event per report
 		# tetapkan smax= 100 
-		# jika "rall" > "smax" maka tampilkan status = "Mencurigakan Malware"
-		# Tampilkan Nama App jika diperlukan
-		smax = 100	
+		# jika "rall" > "smax" maka tampilkan status = "ABNORMAL Behavior"
+		# Tampilkan Nama App belum ada (plan)
+		# Variabel yang digunakan adalah sesuai dengan data yang didapatkan pada malware yaitu 
+		# Variabel = rall:Total_Events, ch:Changed_Events, rn:Renamed_Events, tf:Total_File, fg:File_Signature
+		#---------------------------------
+		# sebelumnya smax=100, diubah jadi smax=50, karena
+		# untuk setiap komputer berbeda kecepatan baca datanya sehingga,
+		# smax=50 dirasa sangat ideal untuk standar file yang diakses per/n-detik
+		smax = 50	
 		smsg = ""
 		#if (len(rall) >= smax or op >= smax or cr >= smax or ch >= smax or de >= smax):
 		if (len(rall) >= smax and ch >= smax and rn >= smax and tf >= smax and fg >= smax ): 
@@ -671,17 +679,40 @@ def ceksmax(rall,ch,rn,tf,fg):
 		return smsg
 
 def print_event(data_list):
+	#	print the list of data in data_list
+	#	check data len and format the output
 	for dl in data_list:
 		if len(dl)   == 2:
 			sdl = " %s : %s" % (dl[0],dl[1])
-		elif len(dl) == 3:
-			sdl = " %s : %s : %s" % (dl[0],dl[1],dl[2])
+#		elif len(dl) == 3:
+#			sdl = " %s : %s : %s" % (dl[0],dl[1],dl[2])
 		elif len(dl) == 4:
 			sdl = " %s : %s : %s : %s" % (dl[0],dl[1],dl[2],dl[3])
 		elif len(dl) == 5:
 			sdl = " %s : %s : %s : %s : %s" % (dl[0],dl[1],dl[2],dl[3],dl[4])
-		print "=>" + sdl					
+		
+		print "=> %s " % sdl
+#		print "=> %s : %s" % (os.path.basename(sdl),os.path.splitext(sdl)[1])				
 
+
+def count_exten(data_list):
+	#	count extention in data_list
+	allext=[]
+	for dl in data_list:
+		if len(dl)   == 2:
+			sdl = "%s" % dl[1]
+		elif len(dl) == 4:
+			sdl = "%s" % dl[3]
+		elif len(dl) == 5:
+			sdl = "%s" % dl[3]
+		
+		for ext in data_filter:
+			fex = os.path.splitext(sdl)[1]
+			if ext in fex:				
+				allext.append(fex)
+	ae = Counter(allext)
+	for ex in ae:
+		print "                         %s : %s" % (ex,ae[ex])	
 
 def getfilesopenbyps(pid,mylist):
 	ps = psutil.Process(pid)
