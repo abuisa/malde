@@ -76,16 +76,23 @@ while True:
 #			print ' Signature : %s ' % str(getsigf(ts))
 #			pid = raw_input('PID  \t\t: ')
 #			getfilesopenbyps(int(pid))
-			mylist = []
 			for pid in getuserps_id():
-				getfilesopenbyps(int(pid),mylist)
-			
-			for l in mylist:
-				print ' >> ',l	
-			
-			ss = raw_input('Cari String  \t\t: ')
-			getlistitem(mylist,str(ss))
-			print 'Hasil Pencarian \t: %s ' % getlistitem(mylist,ss)
+				if getexe(int(pid)).lower() == "cmd.exe":
+					pass
+				else:
+					print " PID : %s \t Exe : %s" % (pid,getexe(int(pid))) 
+				
+
+#			mylist = []
+#			for pid in getuserps_id():
+#				getfilesopenbyps(int(pid),mylist)
+#			
+#			for l in mylist:
+#				print ' >> ',l	
+#			
+#			ss = raw_input('Cari String  \t\t: ')
+#			getlistitem(mylist,str(ss))
+#			print 'Hasil Pencarian \t: %s ' % getlistitem(mylist,ss)
 
 		if pilih == "t": #====test==========
 #			fileEx = ['.exe','.ini','.txt','.doc','.docx','.ppt','.pptx','.xls','.xlsx','.jpg','.jpeg','.png','.pdf']
@@ -232,16 +239,16 @@ while True:
 		if pilih == "5": #====5=============
 			fhwnd('E:\\Format_Entri.xlsx')
 		if pilih == "4": #====4=============
-			stf = 'dumpWindow_ex.LOG'
+#			stf = 'dumpWindow_ex.LOG'
 			while 1:
 				time.sleep(1)
 				line = '*'*65
-				wfile(stf,'\n'+line+'\n')
+#				wfile(stf,'\n'+line+'\n')
 				for l in dumpWindow_ex(0):
 					if not 'explorer.exe' in l[2].lower():
 #						write_modul_info(l[1])
 						sl = 'pid:%s, ps:%s tName:%s, cName:%s' % (l[1],l[2],l[3],l[4])
-						wfile(stf,sl)
+#						wfile(stf,sl)
 						print '--> ', sl					
 				print '-'*35			
 		if pilih == "3": #====3=============

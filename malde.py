@@ -169,7 +169,7 @@ class MyEventHandler( EventHandler ):
             pass
 
 try:	
-	d1 = Debug(MyEventHandler())
+	d1 = Debug(MyEventHandler(), bKillOnExit = False)
 except Exception as E:
 	print " Error Debug : " + str(E)
 	
@@ -178,7 +178,11 @@ def start_debug(): # Hasil OK.
 		d1.stop()
 		for pid in getuserps_id():
 			try:
-				d1.attach(int(pid))
+				thexe = getexe(int(pid)).lower()
+				if thexe == "cmd.exe" or thexe == "py.exe" or thexe == "python.exe":
+					pass
+				else:
+					d1.attach(int(pid))
 			except: # Exception as E:
 				pass
 		d1.loop()
